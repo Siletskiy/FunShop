@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "619084563854",
+    "firebase_url": "https://funn-aa291.firebaseio.com",
+    "project_id": "funn-aa291",
+    "storage_bucket": "funn-aa291.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619084563854:android:416de72cfb0dbde1",
+        "android_client_info": {
+          "package_name": "com.example.fun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619084563854-l52budnvocebc2b28lh4u8pt1bl1j76c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpJSHJ06RDTnAuL7itA7BpYKcillGdouY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
