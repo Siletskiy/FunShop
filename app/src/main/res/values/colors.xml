@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#F3F1F1</color>
     <color name="btnRed">#9f0000</color>
+    <color name="successGreen">#11A10C</color>
 </resources>

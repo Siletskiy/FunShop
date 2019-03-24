@@ -4,11 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
+    public static boolean onResetPasswordFragment = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +20,39 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         frameLayout = findViewById(R.id.register_framelayout);
-        setFragment(new SignInFragment());
+        setDefaultFragment(new SignInFragment());
     }
 
-    private void setFragment(Fragment fragment) {
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            if(onResetPasswordFragment){
+                Log.d("TAG", "Чувак я тут");
+                onResetPasswordFragment = false;
+                setFragment(new SignInFragment());
+
+                return false;
+            }
+
+
+        }
+
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void setDefaultFragment(Fragment fragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(), fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void setFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left, R.anim.slideout_from_right);
+        fragmentTransaction.replace(fragment.getId(), fragment);
         fragmentTransaction.commit();
     }
 }
