@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_from_left, R.anim.slideout_from_right);
-        fragmentTransaction.replace(fragment.getId(), fragment);
+        fragmentTransaction.replace(frameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }
 }
