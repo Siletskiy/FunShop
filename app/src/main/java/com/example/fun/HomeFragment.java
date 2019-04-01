@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,8 +29,6 @@ import java.util.TimerTask;
  */
 public class HomeFragment extends Fragment {
 
-    final private long DELAY_TIME = 3000;
-    final private long PERIOD_TIME = 3000;
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
     ///////////////// Banner Slider
@@ -37,6 +36,8 @@ public class HomeFragment extends Fragment {
     private List<SliderModel> sliderModelList;
     private int currentPage = 2;
     private Timer timer;
+    final private long DELAY_TIME = 3000;
+    final private long PERIOD_TIME = 3000;
     //////////////// Strip Ad
     private ImageView stripAdImage;
 
@@ -184,6 +185,37 @@ public class HomeFragment extends Fragment {
         horizontalProductScrollAdapter.notifyDataSetChanged();
 
         ///////////////// Horizontal Product Layout
+
+        ///////////////// Grid Product Layout
+
+        TextView gridLayoutTitle = view.findViewById(R.id.grid_product_layout_title);
+        Button gridLayoutViewAllBtn = view.findViewById(R.id.grid_product_layout_button);
+        GridView gridView = view.findViewById(R.id.grid_product_layout_gridview);
+
+        gridView.setAdapter(new GridProductViewLayoutAdapter(horizontalProductScrollModelList));
+        ///////////////// Grid Product Layout
+
+        /////////////////////////////////////
+        RecyclerView testing = view.findViewById(R.id.testing);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+        testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        testing.setLayoutManager(testingLayoutManager);
+
+        List<HomePageModel> homePageModelList = new ArrayList<>();
+        homePageModelList.add(new HomePageModel(1, R.mipmap.mercedes, "#000000"));
+        homePageModelList.add(new HomePageModel(0, sliderModelList));
+        homePageModelList.add(new HomePageModel(0, sliderModelList));
+        homePageModelList.add(new HomePageModel(1, R.drawable.ic_launcher_background, "#ffff00"));
+        homePageModelList.add(new HomePageModel(1, R.mipmap.mercedes, "#ff0000"));
+        homePageModelList.add(new HomePageModel(0, sliderModelList));
+
+        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
+        testing.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+        /////////////////////////////////////
+
 
 
         return view;
