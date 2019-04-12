@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProdactDescriptonFragment">
+
+    <TextView
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Мовлення як вид людської діяльності завжди зорієнтоване на виконання певного комунікативного завдання. Висловлюючи думки і почуття, людина ставить конкретну мету — щось повідомити, про щось переконати тощо. Існує багато визначень тексту. Наведемо окремі з них.
+
+«Текст — це витвір мовленнєвого процесу, що відзначається завершеністю, об'єктивований у вигляді письмового документа, літературно опрацьований відповідно до типу документа, витвір, який складається із заголовка і ряду особливих одиниць (надфразових єдностей), об'єднаних різними типами лексичного, граматичного, логічного, стилістичного зв'язку, і має певну цілеспрямованість і прагматичну визначеність»[1] (І. Р. Гальперін)(рос.).
+
+
+"
+        android:textColor="#000000" />
+</FrameLayout>

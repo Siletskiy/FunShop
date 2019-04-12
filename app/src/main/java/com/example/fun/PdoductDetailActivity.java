@@ -11,15 +11,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PdoductDetailActivity extends AppCompatActivity {
 
-    private static boolean ALREADY_ADDED_TO_WISHLIST = false;
     private ViewPager productImageViewPager;
     private TabLayout viewpagerIndicator;
+
+    private static boolean ALREADY_ADDED_TO_WISHLIST = false;
+    private ViewPager productDetailViewPager;
+
+    /////rating layout
+    private TabLayout productDetailsTabLayour;
+    /////rating layout
+    private LinearLayout rateNowContainer;
     private FloatingActionButton addToWishlistBtn;
 
     @Override
@@ -35,13 +44,15 @@ public class PdoductDetailActivity extends AppCompatActivity {
         productImageViewPager = findViewById(R.id.product_images_viewpager);
         viewpagerIndicator = findViewById(R.id.viewpager_indificator);
         addToWishlistBtn = findViewById(R.id.add_to_wishlist_btn);
+        productDetailViewPager = findViewById(R.id.product_details_viewPager);
+        productDetailsTabLayour = findViewById(R.id.product_details_layout);
 
 
         List<Integer> productImages = new ArrayList<>();
         productImages.add(R.mipmap.phone);
         productImages.add(R.mipmap.mercedes);
         productImages.add(R.mipmap.ic_launcher);
-        productImages.add(R.mipmap.ic_launcher_round);
+
 
         ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages);
         productImageViewPager.setAdapter(productImagesAdapter);
@@ -63,6 +74,56 @@ public class PdoductDetailActivity extends AppCompatActivity {
 
             }
         });
+
+        productDetailViewPager.setAdapter(new ProductDetailsAdapter(getSupportFragmentManager(), productDetailsTabLayour.getTabCount()));
+
+        productDetailViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(productDetailsTabLayour));
+
+        productDetailsTabLayour.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                productDetailViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+
+        });
+
+
+        //////rating layout
+
+        rateNowContainer = findViewById(R.id.rate_now_container);
+        for (int x = 0; x < rateNowContainer.getChildCount(); x++) {
+            final int starPosition = x;
+            rateNowContainer.getChildAt(x).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setRating(starPosition);
+                }
+            });
+        }
+
+        //////rating layout
+
+    }
+
+    private void setRating(int starPosition) {
+        for (int x = 0; x < rateNowContainer.getChildCount(); x++) {
+            ImageView starBtn = (ImageView) rateNowContainer.getChildAt(x);
+            starBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#bebebe")));
+            if (x <= starPosition) {
+                starBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#ffbb00")));
+            }
+        }
 
     }
 
